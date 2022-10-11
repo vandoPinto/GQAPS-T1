@@ -76,7 +76,7 @@ function carregarTela(numeroTela) {
     let dados = new Object();
     dados.numeroTela = parseInt(numeroTela);
     dados.telaAtual = telaAtual;
-    dados.progressoGeral = inserirTelaVisitada(numeroTela);
+    dados.progressoGeral = inserirTelaVisitada(parseInt(numeroTela));
     dados.totalTelas = totalTelas;
     localStorage.setItem(`progresso-${sigla}`, JSON.stringify(dados));
 }
