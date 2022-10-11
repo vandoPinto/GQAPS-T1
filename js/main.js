@@ -8,10 +8,11 @@ var totalTelas = $barraProgresso.length;
 var alturaTela = $tela.outerHeight();
 var larguraTela = $tela.outerWidth();
 var telaAtual = 1;
+var progressoGeral = 1;
 var telaUrl = window.location.href.split("#tela-")[1];
 //console.log(telaUrl);
 if (telaUrl) {
-    if (telaUrl > totalTelas+1 || telaUrl == 0) {
+    if (telaUrl > totalTelas + 1 || telaUrl == 0) {
         telaAtual = 1;
     } else {
         telaAtual = telaUrl;
@@ -27,9 +28,9 @@ $("a[href^='#tela-']").each(function (i) {
 
 
 $barraProgresso.each(function (i) {
-    $(this).attr("href", "#tela-" + (i+1))
+    $(this).attr("href", "#tela-" + (i + 1))
         .click(function () {
-            carregarTela(i+1);
+            carregarTela(i + 1);
         });
 });
 
@@ -45,7 +46,7 @@ $botaoAnterior.click(function () {
 
 /* Abre o menu do índice, colocando a largura em 250px */
 function abrirIndice() {
-    $("#indice").width(250).css("overflow-y", "auto").css("overflow-x","hidden");
+    $("#indice").width(250).css("overflow-y", "auto").css("overflow-x", "hidden");
 }
 
 /* Fecha o menu do índice, colocando a largura em 0 */
@@ -55,14 +56,37 @@ function fecharIndice() {
 
 /* Carregar e exibir Tela(Slide) */
 function carregarTela(numeroTela) {
+    let sigla = window.location.pathname.split('/')[(window.location.pathname.split('/').length) - 2];
+    let mylocalStorage = localStorage.getItem(`progresso-${sigla}`);
+    if (JSON.parse(mylocalStorage)) {
+        if (numeroTela == 1) {
+            numeroTela = JSON.parse(mylocalStorage).numeroTela;
+        }
+        telaAtual = JSON.parse(mylocalStorage).telaAtual;
+        progressoGeral = JSON.parse(mylocalStorage).progressoGeral;
+        totalTelas = JSON.parse(mylocalStorage).totalTelas;
+    }
+
     telaAtual = parseInt(numeroTela);
+
+    if (telaAtual > progressoGeral) progressoGeral = telaAtual;
     if (telaAtual > totalTelas) telaAtual = totalTelas;
     if (telaAtual < 1) telaAtual = 1;
 
     var url = "tela-" + telaAtual + ".html";
     $("#tela").load(url, atualizarNav);
+
+    let dados = new Object();
+    dados.numeroTela = parseInt(numeroTela);
+    dados.telaAtual = telaAtual;
+    dados.progressoGeral = progressoGeral;
+    dados.totalTelas = totalTelas;
+
+    localStorage.setItem(`progresso-${sigla}`, JSON.stringify(dados));
+    // console.log(localStorage.getItem('progresso'));
 }
 function atualizarNav() {
+
     $botaoProxima.attr("href", "#tela-" + (telaAtual + 1));
     $botaoAnterior.attr("href", "#tela-" + (telaAtual - 1));
 
@@ -71,13 +95,19 @@ function atualizarNav() {
     if (telaAtual == 0 || telaAtual == 1) $botaoAnterior.css("display", "none");
     if (telaAtual > 1) $botaoAnterior.css("display", "block");
 
+    //progresso Total
+    for (i = 0; i < progressoGeral; i++) {
+        $($barraProgresso[i]).addClass("progresso-geral");
+    }
+
     $(".tela-atual").removeClass("tela-atual");
     $(".tela-visualizada").removeClass("tela-visualizada");
 
-    $($barraProgresso).eq(telaAtual-1).addClass("tela-atual");
+    $($barraProgresso).eq(telaAtual - 1).addClass("tela-atual");
     for (i = 0; i < telaAtual; i++) {
         $($barraProgresso[i]).addClass("tela-visualizada");
     }
+
 }
 
 document.onkeydown = function (e) {
@@ -88,7 +118,7 @@ document.onkeydown = function (e) {
         carregarTela(telaAtual + 1);
     }*/
     if (e.keyCode == 39) {
-      carregarTela(telaAtual + 1);
+        carregarTela(telaAtual + 1);
     }
     if (e.keyCode == 37) {
         carregarTela(telaAtual - 1);
@@ -116,7 +146,7 @@ function redimensionar() {
     );
 
     $tela.css({
-        transform: "translate(-50%,-50%)" + "scale(" + proporcao + ","+proporcao+")"
+        transform: "translate(-50%,-50%)" + "scale(" + proporcao + "," + proporcao + ")"
     });
 }
 
