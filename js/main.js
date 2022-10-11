@@ -78,8 +78,32 @@ function carregarTela(numeroTela) {
     dados.progressoGeral = inserirTelaVisitada(parseInt(numeroTela));
     dados.totalTelas = totalTelas;
     localStorage.setItem(`progresso-${sigla}`, JSON.stringify(dados));
+
 }
 
+function narrar() {
+    let arrayDeTextos = $('[id=tela]').children();
+    let textoParaNarrar = '';
+
+    arrayDeTextos.map((i, val, array) => {
+        if ($(val).text() != '' && $(val)[0].nodeName != 'FOOTER' && $(val)[0].nodeName != 'STYLE' && $(val)[0].nodeName != 'HEADER' && $(val)[0].nodeName != 'SCRIPT') {
+            
+            temp = $(val).text();
+            console.log(temp);
+            textoParaNarrar += ".\n \n" + $.trim(temp);
+        }
+        // console.log($(val).text());
+        // console.log($(val)[0].innerHTML.indexOf('nao-narrar') < 0);
+    })
+    // console.log(arrayDeTextos);
+    // console.log(textoParaNarrar);
+
+    var audio = window.speechSynthesis;
+    audio.cancel();
+    var msg = new SpeechSynthesisUtterance();
+    msg.text = textoParaNarrar;
+    audio.speak(msg);
+}
 
 function inserirTelaVisitada(tela) {
     let found = progressoGeral.some(el => el === tela);
@@ -108,6 +132,7 @@ function atualizarNav() {
     for (i = 0; i < telaAtual; i++) {
         $($barraProgresso[i]).addClass("tela-visualizada");
     }
+    narrar();
 }
 
 document.onkeydown = function (e) {
