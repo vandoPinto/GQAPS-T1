@@ -7,8 +7,8 @@ var $botaoAnterior = $(".nav-telas-anterior");
 var totalTelas = $barraProgresso.length;
 var alturaTela = $tela.outerHeight();
 var larguraTela = $tela.outerWidth();
-var telaAtual = 1;
-var progressoGeral = [telaAtual];
+var telaAtual = 0;
+var progressoGeral = [1];
 var telaUrl = window.location.href.split("#tela-")[1];
 //console.log(telaUrl);
 if (telaUrl) {
@@ -56,13 +56,13 @@ function fecharIndice() {
 
 /* Carregar e exibir Tela(Slide) */
 function carregarTela(numeroTela) {
+    console.log(telaAtual);
     let sigla = window.location.pathname.split('/')[(window.location.pathname.split('/').length) - 2];
     let mylocalStorage = localStorage.getItem(`progresso-${sigla}`);
     if (JSON.parse(mylocalStorage)) {
-        if (numeroTela == 1) numeroTela = JSON.parse(mylocalStorage).numeroTela;
         if (progressoGeral) progressoGeral = JSON.parse(mylocalStorage).progressoGeral;
-        telaAtual = JSON.parse(mylocalStorage).telaAtual;
         totalTelas = JSON.parse(mylocalStorage).totalTelas;
+        if (telaAtual == 0) numeroTela = JSON.parse(mylocalStorage).telaAtual;
     }
 
     telaAtual = parseInt(numeroTela);
@@ -97,9 +97,9 @@ function atualizarNav() {
     if (telaAtual == 0 || telaAtual == 1) $botaoAnterior.css("display", "none");
     if (telaAtual > 1) $botaoAnterior.css("display", "block");
 
-     //progresso Total
-     progressoGeral.map((value) => {
-        $($barraProgresso[value-1]).addClass("progresso-geral");
+    //progresso Total
+    progressoGeral.map((value) => {
+        $($barraProgresso[value - 1]).addClass("progresso-geral");
     })
 
     $(".tela-atual").removeClass("tela-atual");
