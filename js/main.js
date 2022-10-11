@@ -56,7 +56,6 @@ function fecharIndice() {
 
 /* Carregar e exibir Tela(Slide) */
 function carregarTela(numeroTela) {
-    console.log(telaAtual);
     let sigla = window.location.pathname.split('/')[(window.location.pathname.split('/').length) - 2];
     let mylocalStorage = localStorage.getItem(`progresso-${sigla}`);
     if (JSON.parse(mylocalStorage)) {
