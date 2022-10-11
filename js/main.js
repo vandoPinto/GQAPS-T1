@@ -8,7 +8,7 @@ var totalTelas = $barraProgresso.length;
 var alturaTela = $tela.outerHeight();
 var larguraTela = $tela.outerWidth();
 var telaAtual = 1;
-var progressoGeral = 1;
+var progressoGeral = [];
 var telaUrl = window.location.href.split("#tela-")[1];
 //console.log(telaUrl);
 if (telaUrl) {
@@ -69,7 +69,6 @@ function carregarTela(numeroTela) {
 
     telaAtual = parseInt(numeroTela);
 
-    if (telaAtual > progressoGeral) progressoGeral = telaAtual;
     if (telaAtual > totalTelas) telaAtual = totalTelas;
     if (telaAtual < 1) telaAtual = 1;
 
@@ -79,12 +78,17 @@ function carregarTela(numeroTela) {
     let dados = new Object();
     dados.numeroTela = parseInt(numeroTela);
     dados.telaAtual = telaAtual;
-    dados.progressoGeral = progressoGeral;
+    dados.progressoGeral = inserirTelaVisitada(parseInt(numeroTela));
     dados.totalTelas = totalTelas;
-
     localStorage.setItem(`progresso-${sigla}`, JSON.stringify(dados));
-    // console.log(localStorage.getItem('progresso'));
 }
+
+function inserirTelaVisitada(tela) {
+    const found = progressoGeral.some(el => el === tela);
+    if (!found) progressoGeral.push(tela);
+    return progressoGeral.sort();
+}
+
 function atualizarNav() {
 
     $botaoProxima.attr("href", "#tela-" + (telaAtual + 1));
@@ -96,9 +100,9 @@ function atualizarNav() {
     if (telaAtual > 1) $botaoAnterior.css("display", "block");
 
     //progresso Total
-    for (i = 0; i < progressoGeral; i++) {
-        $($barraProgresso[i]).addClass("progresso-geral");
-    }
+    progressoGeral.map((value) => {
+        $($barraProgresso[value-1]).addClass("progresso-geral");
+    })
 
     $(".tela-atual").removeClass("tela-atual");
     $(".tela-visualizada").removeClass("tela-visualizada");
