@@ -87,7 +87,7 @@ function narrar() {
 
     arrayDeTextos.map((i, val, array) => {
         if ($(val).text() != '' && $(val)[0].nodeName != 'FOOTER' && $(val)[0].nodeName != 'STYLE' && $(val)[0].nodeName != 'HEADER' && $(val)[0].nodeName != 'SCRIPT') {
-            
+
             temp = $(val).text();
             console.log(temp);
             textoParaNarrar += ".\n \n" + $.trim(temp);
@@ -95,13 +95,14 @@ function narrar() {
         // console.log($(val).text());
         // console.log($(val)[0].innerHTML.indexOf('nao-narrar') < 0);
     })
-    // console.log(arrayDeTextos);
-    // console.log(textoParaNarrar);
+    playAudio(textoParaNarrar);
+}
 
+function playAudio(texto) {
     var audio = window.speechSynthesis;
     audio.cancel();
     var msg = new SpeechSynthesisUtterance();
-    msg.text = textoParaNarrar;
+    msg.text = texto;
     audio.speak(msg);
 }
 
