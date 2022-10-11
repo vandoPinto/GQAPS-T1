@@ -90,7 +90,7 @@ function narrar() {
 
             temp = $(val).text();
             console.log(temp);
-            textoParaNarrar += ".\n \n" + $.trim(temp);
+            textoParaNarrar += "\n \n" + $.trim(temp);
         }
         // console.log($(val).text());
         // console.log($(val)[0].innerHTML.indexOf('nao-narrar') < 0);
