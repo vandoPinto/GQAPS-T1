@@ -1,3 +1,12 @@
+<style>
+    .janela {
+        display: none;
+    }
+
+    .botao {
+        cursor: pointer;
+    }
+</style>
 <div style="height: 60px; width: 100%; background-color: #a9e5ea;">
     <img style="height: 60px; width: 460px; position: absolute; right: 0px;" src="recursos/imgs/H1.png">
     <p style="position: absolute;color: #294666;margin-left: 43px;margin-top: 26px;font-size: 12px;">TÓPICO<strong>
@@ -7,21 +16,81 @@
         ESTRUTURA ENQUANTO AMPLIFICADORA DO IMPACTO E DA<br> QUALIDADE DAS AÇÕES DESENVOLVIDAS NA ATENÇÃO PRIMÁRIA À
         SAÚDE</p>
 </div>
-<div style="margin-top: 57px;margin-left: 56px;width: 779px;">
-    <p>É importante considerar que as UBS que ainda não completaram o cadastramento podem utilizar as estimativas
-        disponíveis em diversos estudos, tomando por base as estimativas regionais ou municipais para problemas de
-        saúde
-        e faixa etária. </p>
-    <p>Ao se tratar de grandes centros urbanos, é indispensável também garantir um índice de segurança
-        nos pedidos a fim de contemplar a demanda flutuante do território.</p>
-    <div class="animate__animated animate__backInRight"
-        style="margin-top: 30px;margin-left: 102px;display: flex;flex-direction: row;width: 574px;height: 113px;top: 139px;right: 148px;background-color: #FFF2D9;border-radius: 10px;">
-        <img src="recursos/imgs/lampada.svg" style="width: 60px;height: 59px;margin-top: 27px;margin-left: 29px;">
-        <div style="display: initial;margin-left: 21px;width: 444px;">
-            <p style="font-weight: bold;color: #294666;font-size: 15px;">PARA REFLETIR</p>
-            <p style="font-size: 12px;">Essas considerações fazem sentido para você? </p>
-            <p style="font-size: 12px;">Quais reflexões você pode realizar
-                em relação à unidade de saúde em que atua?</p>
+<div style="margin-top: 33px;margin-left: 56px;width: 779px;">
+    <p id="nao-narrar" >Sem a pretensão de esgotar todas as possibilidades de estratégias para a resolução dos desafios enfrentados,
+        vamos relembrar algumas atividades essenciais para garantir o fluxo terapêutico dos usuários.</p>
+    <p> Clique nos verbos e conheça essas atividades.</p>
+    <div style="margin-left: 84px;margin-top: 60px;">
+        <div class="boxs">
+            <div class="botao"
+                style="display: flex;height: 26px;width: 598px;background-color: #0D536A;color: white;justify-content: space-between;">
+                <p style="margin: 5px;font-size: 12px;">Disponibilizar</p>
+                <img src="recursos/imgs/Icon ionic-ios-arrow-down.svg"
+                    style="margin-top: 3px;margin-right: 6px;width: 15px;">
+            </div>
+            <div class="janela" style="display: none;">
+                <div
+                    style="width: 598px;height: 60px;background: #FFFFFFDB 0% 0% no-repeat padding-box;box-shadow: 0px 3px 6px #00000029;margin-top: -10px;text-align: center;">
+                    <p
+                        style="font-size: 12px;font: normal normal normal 12px/13px Poppins;color: #0D536A;padding-top: 20px;padding-left: 16px;">
+                        Disponibilizar o elenco de medicamentos ofertados pela Secretaria de Saúde para uso na rede
+                        de APS a todos os profissionais e os usuários.</p>
+                </div>
+            </div>
+        </div>
+        <div class="boxs">
+            <div class="botao"
+                style="display: flex;height: 26px;width: 598px;background-color: #E7F1F8;color: #0D536A;justify-content: space-between;">
+                <p style="margin: 5px;font-size: 12px;">Promover e estimular</p>
+                <img src="recursos/imgs/Icon ionic-ios-arrow-down-1.svg"
+                    style="margin-top: 3px;margin-right: 6px;width: 15px;">
+            </div>
+            <div class="janela" style="display: none;">
+                <div
+                    style="width: 598px;height: 98px;background: #FFFFFFDB 0% 0% no-repeat padding-box;box-shadow: 0px 3px 6px #00000029;margin-top: -10px;text-align: center;">
+                    <p
+                        style="font-size: 12px;font: normal normal normal 12px/13px Poppins;color: #0D536A;padding-top: 20px;padding-left: 36px;width: 530px;">
+                        Promover e estimular a participação dos profissionais em atividades educativas com o intuito
+                        de discutir protocolos para médicos, enfermeiros e outros profissionais prescritores quanto
+                        ao uso das medicações, uma vez que a escolha terapêutica diferente da proposta pelos
+                        protocolos pode implicar na ampliação de custos e na indisponibilidade do medicamento.</p>
+                </div>
+            </div>
+        </div>
+        <div class="boxs">
+            <div class="botao"
+                style="display: flex;height: 26px;width: 598px;background-color: #0D536A;color: white;justify-content: space-between;">
+                <p style="margin: 5px;font-size: 12px;">Definir</p>
+                <img src="recursos/imgs/Icon ionic-ios-arrow-down.svg"
+                    style="margin-top: 3px;margin-right: 6px;width: 15px;">
+            </div>
+            <div class="janela" style="display: none;">
+                <div
+                    style="width: 598px;height: 70px;background: #FFFFFFDB 0% 0% no-repeat padding-box;box-shadow: 0px 3px 6px #00000029;margin-top: -10px;text-align: center;">
+                    <p
+                        style="font-size: 12px;font: normal normal normal 12px/13px Poppins;color: #0D536A;padding-top: 20px;padding-left: 16px;">
+                        Definir uma rotina operacional interna para reposição de medicamentos e imunobiológicos em
+                        consonância com as normativas da Secretaria de Saúde.</p>
+                </div>
+            </div>
+        </div>
+        <div class="boxs">
+            <div class="botao"
+                style="display: flex;height: 26px;width: 598px;background-color: #E7F1F8;color: #0D536A;justify-content: space-between;">
+                <p style="margin: 5px;font-size: 12px;">Realizar</p>
+                <img src="recursos/imgs/Icon ionic-ios-arrow-down-1.svg"
+                    style="margin-top: 3px;margin-right: 6px;width: 15px;">
+            </div>
+            <div class="janela" style="display: none;">
+                <div
+                    style="width: 598px;height: 80px;background: #FFFFFFDB 0% 0% no-repeat padding-box;box-shadow: 0px 3px 6px #00000029;margin-top: -10px;text-align: center;">
+                    <p
+                        style="font-size: 12px;font: normal normal normal 12px/13px Poppins;color: #0D536A;padding-top: 20px;padding-left: 36px;width: 530px;">
+                        Realizar supervisão periódica do setor de farmácia, atentando para armazenamento dos
+                        produtos, acondicionamento, prazo de validade, condições de infraestrutura do ambiente e
+                        outros que julgar necessário.</p>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -30,3 +99,18 @@
         <p style="color: #294666;font-size: 11px;">GESTÃO DA QUALIDADE NA APS</p>
     </div>
 </footer>
+<script>
+    $(document).ready(function () {
+        $('.boxs .botao').click(function () {
+            $('.janela').slideUp();
+            if ($(this).attr('class') != 'ativo') {
+                $('.boxs .botao').removeClass('ativo');
+                $(this).addClass('ativo');
+                $(this).next().slideDown();
+            } else {
+                $(this).next().slideUp();
+                $(this).removeClass('ativo');
+            }
+        });
+    });
+</script>
